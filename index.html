@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kurorin - Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      text-align: center;
+      margin: 0;
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+    /* ダークモードの背景 */
+    .dark-theme {
+      background: linear-gradient(120deg, #004e92, #0066cc);
+      color: #fff;
+    }
+
+    /* ライトモードの背景 */
+    .light-theme {
+      background: linear-gradient(120deg, #87cefa, #00bfae);
+      color: #000;
+    }
+
+    /* Light/Dark ボタン：画面右上に絶対配置 */
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #00aaff;
+      color: #ffffff;
+      transition: 0.3s;
+      z-index: 100;
+    }
+    .theme-toggle:hover {
+      background-color: #0088cc;
+    }
+
+    /* コンテナはボタンより下に表示（上マージンを調整） */
+    .container {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      max-width: 900px;
+      width: 100%;
+      padding: 20px;
+      margin-top: 60px;
+      justify-content: space-between;
+    }
+    .left-column, .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 48%;
+    }
+    .profile, .github-stats, .about-me, .skills {
+      max-width: 400px;
+      padding: 20px;
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      transition: background-color 0.3s;
+      animation: fadeIn 1s ease-out forwards;
+      opacity: 0;
+    }
+    .light-theme .profile, 
+    .light-theme .github-stats, 
+    .light-theme .about-me, 
+    .light-theme .skills {
+      background-color: #f0f0f0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+    .links {
+      margin-top: 15px;
+    }
+    .links a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      color: #ffffff;
+      background-color: #00aaff;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+    .light-theme .links a {
+      color: #ffffff;
+      background-color: #0077cc;
+    }
+    .links a:hover {
+      transform: scale(1.1);
+      background-color: #0088cc;
+    }
+    .about-me, .skills {
+      text-align: left;
+    }
+    .about-me h2, .skills h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .about-me p, .skills ul {
+      font-size: 18px;
+    }
+    .skills ul {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .skills li {
+      font-size: 24px;
+      margin: 5px 0;
+    }
+    .github-stats {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .github-stats img {
+      max-width: 100%;
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .left-column, .right-column {
+        width: 100%;
+      }
+    }
+
+    /* フェードインのアニメーション */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+        visibility: hidden;
+      }
+      1% {
+        visibility: visible;
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="dark-theme">
+  <!-- 画面右上に配置される Light/Dark ボタン -->
+  <button class="theme-toggle">Light/Dark</button>
+  
+  <div class="container">
+    <!-- 左側のカラム -->
+    <div class="left-column">
+      <!-- プロフィールセクション -->
+      <div class="profile">
+        <img src="https://cdn.flightsim.to/images/avatars/WP5SJgHR.jpg" alt="Kurorin" class="avatar">
+        <h1>Kurorin</h1>
+        <p>Addon Developer (Microsoft Flight Simulator)</p>
+        <p>[Z+9] Tokyo / a.k.a Kuro</p>
+        <div class="links">
+          <a href="https://flightsim.to/profile/Kurorin" target="_blank">Flightsim.to</a>
+          <a href="https://x.com/kurorin_fs" target="_blank">X (Twitter)</a>
+        </div>
+      </div>
+
+      <!-- GitHub Stats Card -->
+      <div class="github-stats">
+        <h2>GitHub Stats</h2>
+        <img id="github-stats" src="https://github-readme-stats-clone-lopn.vercel.app/api?username=Kurorin-fs&include_all_commits=true&theme=github_dark" alt="GitHub Stats Card">
+      </div>
+    </div>
+
+    <!-- 右側のカラム -->
+    <div class="right-column">
+      <!-- About Me セクション -->
+      <div class="about-me">
+        <h2>About Me</h2>
+        <p>I'm an addon developer for Microsoft Flight Simulator, specializing in creating high-quality aircrafts, liveries and sceneries.</p>
+        <p>I'm primarily skilled in Blender and the MSFS SDK.</p>
+      </div>
+
+      <!-- Skills セクション -->
+      <div class="skills">
+        <h2>Skills</h2>
+        <ul>
+          <li><img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Blender_logo_no_text.svg" alt="Blender" width="40" height="40"></li>
+          <li><img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Autodesk_3D_Studio_Max_Icon_from_2022_rebrand.jpg" alt="3dsMax" width="40" height="40"></li>
+          <li><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/GIMP_Icon.svg" alt="GIMP" width="40" height="40"></li>
+          <li><img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" alt="Typescript" width="40" height="40"></li>
+          <li><img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" width="40" height="40"></li>
+          <li><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js" width="40" height="40"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // テーマ切り替えスクリプト
+    const toggleButton = document.querySelector('.theme-toggle');
+    const body = document.body;
+    const githubStatsImg = document.getElementById('github-stats');
+
+    function setTheme(theme) {
+      body.className = theme;
+      localStorage.setItem('theme', theme);
+      const themeParam = theme === 'dark-theme' ? 'github_dark' : 'github_light';
+      githubStatsImg.src = `https://github-readme-stats-clone-lopn.vercel.app/api?username=Kurorin-fs&include_all_commits=true&theme=${themeParam}`;
+    }
+
+    toggleButton.addEventListener('click', () => {
+      if (body.classList.contains('dark-theme')) {
+        setTheme('light-theme');
+      } else {
+        setTheme('dark-theme');
+      }
+    });
+
+    const savedTheme = localStorage.getItem('theme') || 'dark-theme';
+    setTheme(savedTheme);
+  </script>
+</body>
+</html>
